@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  x:Class="PDFReader.View.HomePage"
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:m="clr-namespace:FoxitPDFViewCtrl.Controls;assembly=FoxitPDFViewCtrl"
+  xmlns:v="clr-namespace:PDFReader.View">
+
+  <ContentPage.Resources />
+
+  <ContentPage.MenuBarItems>
+    <MenuBarItem Text="File">
+      <MenuFlyoutItem Clicked="OnOpenFileClicked" Text="Open" />
+      <MenuFlyoutItem Clicked="OnCloseClicked" Text="Close" />
+      <MenuFlyoutItem Clicked="OnExitClicked" Text="Exit" />
+    </MenuBarItem>
+
+    <MenuBarItem Text="Help">
+      <MenuFlyoutItem Clicked="OnAboutClicked" Text="About" />
+    </MenuBarItem>
+  </ContentPage.MenuBarItems>
+
+  <StackLayout
+    HorizontalOptions="Fill"
+    Orientation="Vertical"
+    VerticalOptions="Fill">
+    <m:PDFViewCtrl
+      x:Name="pdf_view_ctrl_"
+      BackgroundColor="AliceBlue"
+      HorizontalOptions="FillAndExpand"
+      HorizontalScrollBarVisibility="Always"
+      Orientation="Both"
+      VerticalOptions="FillAndExpand"
+      VerticalScrollBarVisibility="Always" />
+    <v:ToolView x:Name="tool_view_ctrl_" IsVisible="{OnPlatform WinUI=true, MacCatalyst=true, iOS=true, Android=true}" />
+  </StackLayout>
+
+</ContentPage>

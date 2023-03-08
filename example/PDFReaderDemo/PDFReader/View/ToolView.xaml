@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+  x:Class="PDFReader.View.ToolView"
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="Gray">
+
+
+  <HorizontalStackLayout
+    Padding="30,0"
+    BackgroundColor="Gray"
+    HorizontalOptions="Center"
+    Spacing="10">
+
+    <ImageButton
+      x:Name="btn_first_page"
+      BackgroundColor="Gray"
+      Clicked="OnButtonFirstPageClicked"
+      HeightRequest="16"
+      HorizontalOptions="Center"
+      Source="first.png"
+      WidthRequest="{OnPlatform WinUI=16,
+                                MacCatalyst=16,
+                                iOS=16,
+                                Android=16}" />
+    <ImageButton
+      x:Name="btn_pre_page"
+      BackgroundColor="Gray"
+      Clicked="OnButtonPrePageClicked"
+      HeightRequest="16"
+      HorizontalOptions="Start"
+      Source="pre.png"
+      VerticalOptions="Center"
+      WidthRequest="{OnPlatform WinUI=16,
+                                MacCatalyst=16,
+                                iOS=16,
+                                Android=16}" />
+    <Picker
+      x:Name="page_picker"
+      HeightRequest="36"
+      SelectedIndexChanged="OnPickerSelectionChanged"
+      VerticalOptions="CenterAndExpand"
+      WidthRequest="{OnPlatform WinUI=200,
+                                MacCatalyst=200,
+                                iOS=60,
+                                Android=30}" />
+    <ImageButton
+      x:Name="bt_next_page"
+      BackgroundColor="Gray"
+      Clicked="OnButtonNextPageClicked"
+      HeightRequest="16"
+      HorizontalOptions="Start"
+      Source="next.png"
+      VerticalOptions="Center"
+      WidthRequest="{OnPlatform WinUI=16,
+                                MacCatalyst=16,
+                                iOS=16,
+                                Android=16}" />
+    <ImageButton
+      x:Name="btn_last_page"
+      BackgroundColor="Gray"
+      Clicked="OnButtonLastPageClicked"
+      HeightRequest="16"
+      HorizontalOptions="Start"
+      Source="last.png"
+      VerticalOptions="Center"
+      WidthRequest="{OnPlatform WinUI=16,
+                                MacCatalyst=16,
+                                iOS=16,
+                                Android=16}" />
+    <ImageButton
+      x:Name="btn_zoom_out"
+      BackgroundColor="Gray"
+      Clicked="OnButtonZoomOutClicked"
+      HeightRequest="16"
+      HorizontalOptions="Start"
+      Source="zoom_out.png"
+      VerticalOptions="Center"
+      WidthRequest="{OnPlatform WinUI=16,
+                                MacCatalyst=16,
+                                iOS=16,
+                                Android=16}" />
+    <Slider
+      x:Name="scale_slider"
+      BackgroundColor="{OnPlatform WinUI=LightGray,
+                                   Android=LightGray,
+                                   MacCatalyst=Gray,
+                                   iOS=Gray}"
+      HeightRequest="36"
+      IsVisible="{OnPlatform WinUI=true,
+                             MacCatalyst=true,
+                             iOS=false,
+                             Android=false}"
+      Maximum="{OnPlatform WinUI=600,
+                           MacCatalyst=600,
+                           iOS=200,
+                           Android=200}"
+      Minimum="{OnPlatform WinUI=10,
+                           MacCatalyst=10,
+                           iOS=60,
+                           Android=60}"
+      MinimumTrackColor="Coral"
+      ThumbColor="BlanchedAlmond"
+      ValueChanged="OnSliderValueChanged"
+      WidthRequest="300"
+      Value="100" />
+    <Label
+      BindingContext="{x:Reference scale_slider}"
+      HeightRequest="20"
+      Text="{Binding Value, StringFormat='{0:F0}%'}"
+      TextColor="White"
+      VerticalTextAlignment="Center"
+      WidthRequest="{OnPlatform WinUI=40,
+                                MacCatalyst=40,
+                                iOS=25,
+                                Android=25}" />
+    <ImageButton
+      x:Name="btn_zoom_in"
+      BackgroundColor="Gray"
+      Clicked="OnButtonZoomInClicked"
+      HeightRequest="16"
+      HorizontalOptions="Start"
+      Source="zoom_in.png"
+      VerticalOptions="Center"
+      WidthRequest="{OnPlatform WinUI=16,
+                                MacCatalyst=16,
+                                iOS=16,
+                                Android=16}" />
+
+    <ImageButton
+      x:Name="open"
+      BackgroundColor="{OnPlatform WinUI=LightGray,
+                                   MacCatalyst=Gray,
+                                   iOS=Gray,
+                                   Android=LightGray}"
+      Clicked="OnButtonOpenClicked"
+      HeightRequest="16"
+      HorizontalOptions="Start"
+      IsVisible="{OnPlatform WinUI=false,
+                             MacCatalyst=false,
+                             iOS=true,
+                             Android=true}"
+      Source="open.png"
+      VerticalOptions="Center"
+      WidthRequest="{OnPlatform WinUI=16,
+                                MacCatalyst=16,
+                                iOS=16,
+                                Android=16}" />
+  </HorizontalStackLayout>
+</ContentView>
