@@ -2,8 +2,6 @@
 
 ------
 
-[TOC]
-
 Foxit PDF SDK for .NET features a powerful, easy-to-use Core API in C# for rendering, viewing, annotation, signing, protecting and managing forms in PDFs. As a cross-platform product, Foxit.SDK.Dotnet 9.0 began to provide MAUI with interfaces supported by Windows, Android, iOS and macOS. The following sections introduce the contents of Foxit PDF SDK for .NET MAUI.
 
 ## Supported platforms
