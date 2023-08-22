@@ -80,6 +80,7 @@ namespace FoxitPDFViewCtrl.FoxitPDFSDK
             if (pdf_page_.IsParsed() && !is_reparse)
                 return true;
 
+            // SDKRD-12103: In maui dotnet7 for iOS, using PageParse_Pause results in a crash (possibly due to bugs within maui itself). Therefore, it is advisable to avoid using PageParse_Pause at this time.
             //PageParse_Pause pause = new PageParse_Pause();
             Progressive progress = pdf_page_.StartParse((int)PDFPage.ParseFlags.e_ParsePageNormal, null, is_reparse);
             Progressive.State state = Progressive.State.e_ToBeContinued;
