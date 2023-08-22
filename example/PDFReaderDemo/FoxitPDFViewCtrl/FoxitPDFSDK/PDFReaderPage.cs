@@ -80,8 +80,8 @@ namespace FoxitPDFViewCtrl.FoxitPDFSDK
             if (pdf_page_.IsParsed() && !is_reparse)
                 return true;
 
-            PageParse_Pause pause = new PageParse_Pause();
-            Progressive progress = pdf_page_.StartParse((int)PDFPage.ParseFlags.e_ParsePageNormal, pause, is_reparse);
+            //PageParse_Pause pause = new PageParse_Pause();
+            Progressive progress = pdf_page_.StartParse((int)PDFPage.ParseFlags.e_ParsePageNormal, null, is_reparse);
             Progressive.State state = Progressive.State.e_ToBeContinued;
             while (state == Progressive.State.e_ToBeContinued)
             {
