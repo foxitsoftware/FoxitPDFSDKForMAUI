@@ -18,6 +18,7 @@ public partial class HomePage : ContentPage
         InitializeComponent();
         SDKInit();
         tool_view_ctrl_.SetView(pdf_view_ctrl_);
+        Loaded += OnHomePageLoaded;
 #if WINDOWS || MACCATALYST
         tool_view_ctrl_.IsVisible = false;
 #endif       
@@ -35,6 +36,9 @@ public partial class HomePage : ContentPage
         {
             isLibraryInitialize = true;
             tool_view_ctrl_.IsLibraryInitialize = true;
+            s_library_released = false;
+            AppDomain.CurrentDomain.ProcessExit -= OnProcessExit;
+            AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
         }
         else
         {
@@ -42,6 +46,35 @@ public partial class HomePage : ContentPage
             tool_view_ctrl_.IsLibraryInitialize = false;
         }
 
+    }
+
+    private void OnHomePageLoaded(object sender, EventArgs e)
+    {
+        if (Window != null)
+        {
+            Window.Destroying += OnWindowDestroying;
+        }
+    }
+
+    private void OnWindowDestroying(object sender, EventArgs e)
+    {
+        pdf_view_ctrl_.CloseDoc(null);
+        ReleaseLibrary();
+    }
+
+
+    private static bool s_library_released = false;
+
+    private static void OnProcessExit(object sender, EventArgs e)
+    {
+        ReleaseLibrary();
+    }
+
+    private static void ReleaseLibrary()
+    {
+        if (s_library_released) return;
+        s_library_released = true;
+        Library.Release();
     }
 
     private void Completion(foxit.common.ErrorCode error)

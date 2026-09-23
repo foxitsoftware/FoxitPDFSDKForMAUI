@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-maccatalyst;net6.0-ios;net6.0-android</TargetFrameworks>
+		<TargetFrameworks>net8.0-maccatalyst;net8.0-ios;net8.0-android;net9.0-maccatalyst;net9.0-ios;net9.0-android</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
 
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -25,11 +25,12 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0;net9.0-windows10.0.19041.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Foxit.SDK.Dotnet" Version="9.0.0" />
+	  <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+	  <PackageReference Include="Foxit.SDK.Dotnet" Version="11.1.1" />
 	  <PackageReference Include="SkiaSharp" Version="2.88.6" />
 	  <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
 	</ItemGroup>

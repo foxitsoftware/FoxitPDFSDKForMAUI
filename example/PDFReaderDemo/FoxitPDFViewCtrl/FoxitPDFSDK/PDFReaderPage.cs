@@ -41,16 +41,15 @@ namespace FoxitPDFViewCtrl.FoxitPDFSDK
         public void Dispose()
         {
             this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                GC.SuppressFinalize(this);
+                Release();
             }
-
-            Release();
         }
 
         void Release()

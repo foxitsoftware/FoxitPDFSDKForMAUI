@@ -32,23 +32,22 @@ public class PDFReaderDoc : IDisposable
 
     }
 
-    ~PDFReaderDoc()
-    {
-        this.Dispose(false);
-    }
-
+    // No finalizer on purpose: this type owns only managed IDisposables (PDFDoc and
+    // PDFReaderPage are SWIG wrappers that finalize their own native handles). A
+    // finalizer here would call Dispose() on those from the finalizer thread, in an
+    // order the GC picks -- exactly what the Dispose(bool) pattern exists to prevent.
     public void Dispose()
     {
         this.Dispose(true);
+        GC.SuppressFinalize(this);
     }
+
     protected virtual void Dispose(bool disposing)
     {
         if (disposing)
         {
-            GC.SuppressFinalize(this);
+            Release();
         }
-
-        Release();
     }
 
     void Release()

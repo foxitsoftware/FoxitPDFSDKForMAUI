@@ -178,6 +178,15 @@ public partial class ToolView : ContentView
         is_need_picker_select_update = true;
     }
 
+    private static async Task ShowAlertAsync(string title, string message)
+    {
+        Page? root_page = Application.Current?.Windows.FirstOrDefault()?.Page;
+        if (root_page != null)
+        {
+            await root_page.DisplayAlert(title, message, "OK");
+        }
+    }
+
     private async void OnButtonOpenClicked(object sender, EventArgs e)
     {
         PDFViewCtrl pdf_view_ctrl = GetViewCtrl();
@@ -187,7 +196,7 @@ public partial class ToolView : ContentView
             {
                 if (!IsLibraryInitialize)
                 {
-                    await App.Current.MainPage.DisplayAlert("Error", "Initialize library failed", "OK");
+                    await ShowAlertAsync("Error", "Initialize library failed");
                     return;
                 }
 
@@ -210,7 +219,7 @@ public partial class ToolView : ContentView
             catch (Exception ex)
             {
                 // The user canceled or something went wrong
-                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                await ShowAlertAsync("Error", ex.Message);
             }
         }
     }
